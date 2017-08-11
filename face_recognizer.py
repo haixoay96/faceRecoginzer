@@ -22,7 +22,8 @@ def my_get(path, code):
         image = np.array(image_pil, 'uint8')
         res = cv2.resize(image,(20,20))
         equ = cv2.equalizeHist(res)
-
+        cv2.imshow("show", equ)
+        cv2.waitKey(50)
         # Get the label of the image
         nbr = code
         images.append(equ)
@@ -55,7 +56,7 @@ def get_images_and_labels(path):
             equ = cv2.equalizeHist(res)
             images.append(equ)
             labels.append(nbr)
-            cv2.imshow("Adding faces to traning set...", image[y: y + h, x: x + w])
+            cv2.imshow("Adding faces to traning set...",equ)
             cv2.waitKey(50)
     # return the images list and labels list
     return images, labels
@@ -76,21 +77,19 @@ recognizer.train(images, np.array(labels))
 
 recognizer.save('./data.xml')
 print "Done!"
-
-#Append the images with the extension .sad into image_paths
-image_paths = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.sad')]
-for image_path in image_paths:
-    predict_image_pil = Image.open(image_path).convert('L')
-    predict_image = np.array(predict_image_pil, 'uint8')
-    faces = faceCascade.detectMultiScale(predict_image)
-    for (x, y, w, h) in faces:
-        res = cv2.resize(predict_image[y: y + h, x: x + w],(20,20))
-        equ = cv2.equalizeHist(res)
-        nbr_predicted, conf = recognizer.predict(equ)
-        nbr_actual = int(os.path.split(image_path)[1].split(".")[0].replace("subject", ""))
-        if nbr_actual == nbr_predicted:
-            print "{} is Correctly Recognized with confidence {}".format(nbr_actual, conf)
-        else:
-            print "{} is Incorrect Recognized as {}".format(nbr_actual, nbr_predicted)
-        cv2.imshow("Recognizing Face", predict_image[y: y + h, x: x + w])
-        cv2.waitKey(1000)
+#
+# Append the images with the extension .sad into image_paths
+# image_paths = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.sad')]
+# for image_path in image_paths:
+#     predict_image_pil = Image.open(image_path).convert('L')
+#     predict_image = np.array(predict_image_pil, 'uint8')
+#     faces = faceCascade.detectMultiScale(predict_image)
+#     for (x, y, w, h) in faces:
+#         nbr_predicted, conf = recognizer.predict(predict_image[y: y + h, x: x + w])
+#         nbr_actual = int(os.path.split(image_path)[1].split(".")[0].replace("subject", ""))
+#         if nbr_actual == nbr_predicted:
+#             print "{} is Correctly Recognized with confidence {}".format(nbr_actual, conf)
+#         else:
+#             print "{} is Incorrect Recognized as {}".format(nbr_actual, nbr_predicted)
+#         cv2.imshow("Recognizing Face", predict_image[y: y + h, x: x + w])
+#         cv2.waitKey(1000)

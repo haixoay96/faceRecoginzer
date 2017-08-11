@@ -31,7 +31,7 @@ while True:
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     equ = cv2.equalizeHist(gray)
     faces = faceCascade.detectMultiScale(
-        equ,
+        gray,
         scaleFactor= sF,
         minNeighbors=8,
         minSize=(55, 55),
@@ -39,14 +39,14 @@ while True:
     )
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)
-        roi_gray = gray[y:y+h, x:x+w]
+        roi_gray = equ[y:y+h, x:x+w]
         prediction = recognizer.predict(cv2.resize(roi_gray,(20,20)))
         cv2.putText(frame, str(prediction[0]),
            (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
         print prediction
     # ---- Draw a rectangle around the faces
     facesProfile = faceProfileCascade.detectMultiScale(
-        equ,
+        gray,
         scaleFactor= sF,
         minNeighbors=8,
         minSize=(55,55),
@@ -55,7 +55,7 @@ while True:
 
     for (x, y, w, h) in facesProfile:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 100), 2)
-        roi_gray = gray[y:y+h, x:x+w]
+        roi_gray = equ[y:y+h, x:x+w]
         prediction = recognizer.predict(cv2.resize(roi_gray,(20,20)))
         cv2.putText(frame, str(prediction[0]),
            (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
@@ -65,7 +65,7 @@ while True:
     gray_ = cv2.cvtColor(frame_, cv2.COLOR_BGR2GRAY)
     equ_ = cv2.equalizeHist(gray_)
     facesProfile_ = faceProfileCascade.detectMultiScale(
-        equ_,
+        gray_,
         scaleFactor= sF,
         minNeighbors=8,
         minSize=(55, 55),
@@ -73,7 +73,7 @@ while True:
     )
     for (x, y, w, h) in facesProfile_:
         cv2.rectangle(frame_, (x, y), (x+w, y+h), (0, 0, 50), 2)
-        roi_gray = gray[y:y+h, x:x+w]
+        roi_gray = equ_[y:y+h, x:x+w]
         prediction = recognizer.predict(cv2.resize(roi_gray,(20,20)))
         cv2.putText(frame_, str(prediction[0]),
            (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
