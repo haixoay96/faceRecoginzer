@@ -20,7 +20,7 @@ def my_get(path, code):
         image_pil = Image.open(image_path).convert('L')
         # Convert the image format into numpy array
         image = np.array(image_pil, 'uint8')
-        res = cv2.resize(image,(20,20))
+        res = cv2.resize(image,(10,10))
         equ = cv2.equalizeHist(res)
         cv2.imshow("show", equ)
         cv2.waitKey(50)
@@ -52,7 +52,7 @@ def get_images_and_labels(path):
         faces = faceCascade.detectMultiScale(image)
         # If face is detected, append the face to images and the label to labels
         for (x, y, w, h) in faces:
-            res = cv2.resize(image,(20,20))
+            res = cv2.resize(image,(10,10))
             equ = cv2.equalizeHist(res)
             images.append(equ)
             labels.append(nbr)

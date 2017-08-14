@@ -40,7 +40,7 @@ while True:
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)
         roi_gray = equ[y:y+h, x:x+w]
-        prediction = recognizer.predict(cv2.resize(roi_gray,(20,20)))
+        prediction = recognizer.predict(cv2.resize(roi_gray,(10,10)))
         cv2.putText(frame, str(prediction[0]),
            (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
         print prediction
@@ -56,7 +56,7 @@ while True:
     for (x, y, w, h) in facesProfile:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 100), 2)
         roi_gray = equ[y:y+h, x:x+w]
-        prediction = recognizer.predict(cv2.resize(roi_gray,(20,20)))
+        prediction = recognizer.predict(cv2.resize(roi_gray,(10,10)))
         cv2.putText(frame, str(prediction[0]),
            (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
         print prediction
@@ -74,7 +74,7 @@ while True:
     for (x, y, w, h) in facesProfile_:
         cv2.rectangle(frame_, (x, y), (x+w, y+h), (0, 0, 50), 2)
         roi_gray = equ_[y:y+h, x:x+w]
-        prediction = recognizer.predict(cv2.resize(roi_gray,(20,20)))
+        prediction = recognizer.predict(cv2.resize(roi_gray,(10,10)))
         cv2.putText(frame_, str(prediction[0]),
            (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
         print prediction
