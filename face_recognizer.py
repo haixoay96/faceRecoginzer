@@ -119,7 +119,14 @@ my_get('./crop-train/yaleB38',137)
 my_get('./crop-train/yaleB39',138)
 
 
-
+my_get('./crop-train/train01',201)
+my_get('./crop-train/train02',202)
+my_get('./crop-train/train03',203)
+my_get('./crop-train/train04',204)
+my_get('./crop-train/train05',205)
+my_get('./crop-train/train06',206)
+my_get('./crop-train/train07',207)
+my_get('./crop-train/train08',208)
 
 cv2.destroyAllWindows()
 # Perform the tranining
