@@ -28,6 +28,7 @@ while True:
     ret, frame = cap.read() # Capture frame-by-frame
 # mirror image
     img = frame
+    frame = cv2.flip(frame,1)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     equ = cv2.equalizeHist(gray)
     faces = faceCascade.detectMultiScale(
@@ -45,39 +46,39 @@ while True:
            (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
         print prediction
     # ---- Draw a rectangle around the faces
-    facesProfile = faceProfileCascade.detectMultiScale(
-        gray,
-        scaleFactor= sF,
-        minNeighbors=8,
-        minSize=(55,55),
-        flags=cv2.cv.CV_HAAR_SCALE_IMAGE
-    )
-
-    for (x, y, w, h) in facesProfile:
-        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 100), 2)
-        roi_gray = equ[y:y+h, x:x+w]
-        prediction = recognizer.predict(cv2.resize(roi_gray,(10,10)))
-        cv2.putText(frame, str(prediction[0]),
-           (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
-        print prediction
+    # facesProfile = faceProfileCascade.detectMultiScale(
+    #     gray,
+    #     scaleFactor= sF,
+    #     minNeighbors=8,
+    #     minSize=(55,55),
+    #     flags=cv2.cv.CV_HAAR_SCALE_IMAGE
+    # )
     #
+    # for (x, y, w, h) in facesProfile:
+    #     cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 100), 2)
+    #     roi_gray = equ[y:y+h, x:x+w]
+    #     prediction = recognizer.predict(cv2.resize(roi_gray,(10,10)))
+    #     cv2.putText(frame, str(prediction[0]),
+    #        (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
+    #     print prediction
+    # #
     frame_ = cv2.flip(frame,1)
     gray_ = cv2.cvtColor(frame_, cv2.COLOR_BGR2GRAY)
     equ_ = cv2.equalizeHist(gray_)
-    facesProfile_ = faceProfileCascade.detectMultiScale(
-        gray_,
-        scaleFactor= sF,
-        minNeighbors=8,
-        minSize=(55, 55),
-        flags=cv2.cv.CV_HAAR_SCALE_IMAGE
-    )
-    for (x, y, w, h) in facesProfile_:
-        cv2.rectangle(frame_, (x, y), (x+w, y+h), (0, 0, 50), 2)
-        roi_gray = equ_[y:y+h, x:x+w]
-        prediction = recognizer.predict(cv2.resize(roi_gray,(10,10)))
-        cv2.putText(frame_, str(prediction[0]),
-           (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
-        print prediction
+    # facesProfile_ = faceProfileCascade.detectMultiScale(
+    #     gray_,
+    #     scaleFactor= sF,
+    #     minNeighbors=8,
+    #     minSize=(55, 55),
+    #     flags=cv2.cv.CV_HAAR_SCALE_IMAGE
+    # )
+    # for (x, y, w, h) in facesProfile_:
+    #     cv2.rectangle(frame_, (x, y), (x+w, y+h), (0, 0, 50), 2)
+    #     roi_gray = equ_[y:y+h, x:x+w]
+    #     prediction = recognizer.predict(cv2.resize(roi_gray,(10,10)))
+    #     cv2.putText(frame_, str(prediction[0]),
+    #        (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
+    #     print prediction
 
 
 
@@ -86,7 +87,7 @@ while True:
 
     #cv2.cv.Flip(frame, None, 1)
 
-    cv2.imshow('Smile Detector', frame_)
+    cv2.imshow('Smile Detector', frame)
     c = cv2.cv.WaitKey(7) % 0x100
     if c == 27:
         break

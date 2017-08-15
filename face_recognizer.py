@@ -67,9 +67,11 @@ path = './yalefaces'
 # Call the get_images_and_labels function and get the face images and the
 # corresponding labels
 get_images_and_labels(path)
-my_get('./mydata',1000)
-my_get('./dataquynh',2000)
-my_get('./datathanh',3000)
+#my_get('./datalinh',1000)
+my_get('./100-Quynh',2000)
+my_get('./100-Thanh',3000)
+my_get('./100-Quang',4000)
+my_get('./100-Linh',1000)
 cv2.destroyAllWindows()
 # Perform the tranining
 recognizer.train(images, np.array(labels))
