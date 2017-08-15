@@ -40,4 +40,4 @@ def get_images_and_labels(path):
             cv2.imwrite('./test/'+ str(random.randint(0,1000)) + 'x.png',sv)
     # return the images list and labels list
 
-get_images_and_labels('./data2')
+get_images_and_labels('./mai')

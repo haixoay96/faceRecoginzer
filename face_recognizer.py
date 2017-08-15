@@ -72,6 +72,9 @@ my_get('./100-Quynh',2000)
 my_get('./100-Thanh',3000)
 my_get('./100-Quang',4000)
 my_get('./100-Linh',1000)
+my_get('./100-Tuan',5000)
+my_get('./100-Mai',6000)
+
 cv2.destroyAllWindows()
 # Perform the tranining
 recognizer.train(images, np.array(labels))

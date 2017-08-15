@@ -19,7 +19,7 @@ eyesCascade = cv2.CascadeClassifier(eyesPath)
 
 while True:
     print 'start!'
-    image_pil = Image.open('./image/IMG_20170617_131154.jpg')
+    image_pil = Image.open('./12459507_1503562116615838_551301465_n.jpg')
         # Convert the image format into numpy array
     image = np.array(image_pil, 'uint8')
     frame =  image# Capture frame-by-frame
